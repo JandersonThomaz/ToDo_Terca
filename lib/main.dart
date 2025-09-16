@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_terca/models/tarefa.dart';
 import 'package:todo_terca/screens/home_screen.dart';
-import 'package:todo_terca/services/tarefa_service.dart';
 
 void main() {
   runApp(const MainApp());
