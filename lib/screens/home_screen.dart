@@ -69,14 +69,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final novaTarefa = await Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => AdicionarTaskScreen(),
-            ),
+            MaterialPageRoute(builder: (context) => AdicionarTaskScreen()),
           );
+
+          if (novaTarefa != null || novaTarefa is Tarefa) {
+            setState(() {
+              tarefas.add(novaTarefa);
+            });
+          }
         },
+
         child: Icon(Icons.add),
       ),
     );
