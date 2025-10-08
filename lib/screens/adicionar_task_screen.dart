@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_terca/data/tarefa_repository.dart';
 import 'package:todo_terca/models/tarefa.dart';
 
 class AdicionarTaskScreen extends StatelessWidget {
@@ -70,7 +71,7 @@ class AdicionarTaskScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: FilledButton(
-                onPressed: () {
+                onPressed: () async {
                   //Formulário está valido
                   if (_formKey.currentState!.validate()) {
                     Tarefa novaTarefa = Tarefa(
@@ -79,11 +80,10 @@ class AdicionarTaskScreen extends StatelessWidget {
                       descricaoController.text,
                     );
 
-                    Navigator.pop(context, novaTarefa);
+                    await TarefaRepository().salvar(novaTarefa);
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Tarefa criada com sucesso!")),
-                    );
+                    Navigator.pop(context);
+
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

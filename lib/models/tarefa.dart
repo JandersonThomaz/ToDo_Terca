@@ -14,4 +14,12 @@ class Tarefa {
     finalizada = false;
   }
 
+  Map<String, Object?> toMap() {
+    return {
+      'titulo': titulo, 
+      'descricao': descricao,
+      'finalizada': finalizada ? 1 : 0
+      };
+  }
+
 }
